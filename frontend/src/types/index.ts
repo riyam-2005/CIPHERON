@@ -1021,4 +1021,142 @@ export interface MicrofluidicTelemetry {
   measured_dissolution_ns: number;
 }
 
+// V26.0 Trans-Recursive Absolute Bio-Cognitive Types
+export interface TransRecursiveState {
+  membranePotentialUv: number;
+  sppWavevectorReal: number;
+  organoid3dPermittivity: number;
+  sppPropagationLengthUm: number;
+  throughputPbps: number;
+  energyEfficiencyFj: number;
+  interposerLocked: boolean;
+  highGammaCenterHz: number;
+  thetaCenterHz: number;
+  phaseSync: number;
+  transRecursivePower: number;
+  entropyBits: number;
+  transRecursiveKeyHash: string;
+  dnaCodons: string;
+  carrierFreqHz: number;
+  fovealVectorRad: number;
+  stegoPayload: string;
+  recoveredPayload: string;
+  absoluteKeyHex: string;
+  zkCommitment: string;
+  friLayers: string[];
+  zeroized: boolean;
+  zeroizeLatencyUs: number;
+}
+
+export interface TransRecursiveTelemetry {
+  quantum_plasmonic_interposer: {
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    total_couplings: number;
+  };
+  trans_recursive_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    high_gamma_band: string;
+    micro_tremor_band: string;
+    zeroized: boolean;
+  };
+  zk_goldilocks_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface QuantumPlasmonicDispersionResult {
+  membrane_potential_uv: number;
+  organoid_3d_permittivity: number;
+  quantum_spp_wavevector_real: number;
+  spp_propagation_length_um: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface TransRecursiveKeyResult {
+  status: string;
+  key_hash: string;
+  high_gamma_sample_count: number;
+  theta_sample_count: number;
+}
+
+export interface TransRecursivePSDResult {
+  sampling_rate_hz: number;
+  high_gamma_band_range: string;
+  theta_band_range: string;
+  phase_synchronization: number;
+  trans_recursive_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface MultiSpectralMicroSaccadeDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface MultiSpectralMicroSaccadeModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface AbsoluteCognitiveKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  trans_recursive_power: number;
+  plasmonic_intensity_uv: number;
+  dna_codon_stream: string;
+  foveal_vector_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKAbsoluteCognitiveProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    fri_layers: string[];
+    security_margin_bits: number;
+    trans_recursive_verified: boolean;
+    plasmonic_intensity_verified: boolean;
+    foveal_vector_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKAbsoluteCognitiveVerifyResult {
+  status: string;
+  is_valid: boolean;
+  proof_system: string;
+}
+
+export interface TransRecursiveZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
 

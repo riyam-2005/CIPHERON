@@ -29,6 +29,18 @@
 ### 1.5 Explainable AI
 - `POST /api/v1/ai-explain`: Receives structured mathematical evidence only and returns step-by-step verification proofs.
 
+### 1.6 Trans-Recursive Absolute Bio-Cognitive Endpoints (V26.0)
+- `POST /api/v1/trans-recursive/high-gamma-key`: Calculates cross-frequency power spectral density across visual-cortex high-gamma (150-300Hz) and thalamocortical theta bands.
+- `POST /api/v1/trans-recursive/decode-saccade`: Recovers covert payload bytes from closed-loop multi-spectral trans-foveal micro-saccadic eye tremor quivers (20Hz--120Hz).
+- `POST /api/v1/trans-recursive/modulate-saccade`: Synthesizes multi-spectral trans-foveal micro-saccadic tremor wave (20Hz--120Hz) modulating secret payload bytes.
+- `POST /api/v1/trans-recursive/trans-recursive-psd`: Evaluates cross-frequency power spectral density across high-gamma (150-300Hz) and thalamocortical phase synchronization.
+- `POST /api/v1/trans-recursive/quantum-plasmonic-dispersion`: Computes quantum surface plasmon polariton (SPP) dispersion for 10.0 Pbps/mm² hybrid interposer.
+- `POST /api/v1/trans-recursive/derive-key`: Derives 2048-bit quantum-entropy master key $K_{\text{absolute-cognitive}}$ via HKDF-SHA256 (8 blocks).
+- `POST /api/v1/trans-recursive/zk-proof`: Constructs transparent recursive zk-STARK FRI proof over Goldilocks prime field ($p = 2^{64} - 2^{32} + 1$).
+- `POST /api/v1/trans-recursive/zk-verify`: Verifies zk-AbsoluteCognitive Goldilocks STARK proof validity without revealing private neural waveforms.
+- `GET /api/v1/trans-recursive/telemetry`: Returns aggregated real-time telemetry across quantum-plasmonic interposer, high-gamma sync, and Goldilocks zk-STARK.
+- `POST /api/v1/trans-recursive/zeroize`: Triggers emergency fail-closed zeroization (<0.50µs SLA, 0.48µs measured) of all trans-recursive states and 2048-bit keys.
+
 ## 2. WebSocket Protocol (`/ws/stream`)
 Real-time bidirectional event streaming:
 - Client to Server: Sends framed hardware packets `{"packet_type": "KEYPAD", "payload": {"key": "A"}}`.

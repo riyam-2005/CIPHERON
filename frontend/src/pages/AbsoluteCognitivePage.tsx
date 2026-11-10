@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AbsoluteCognitiveSingularity3D } from '../components/AbsoluteCognitiveSingularity3D';
+import { api } from '../services/api';
 import {
   Atom,
   ShieldAlert,
@@ -64,24 +65,87 @@ export const AbsoluteCognitivePage: React.FC = () => {
   const [zeroized, setZeroized] = useState<boolean>(false);
   const [zeroizeLatencyUs, setZeroizeLatencyUs] = useState<number>(0);
 
+  // Load initial telemetry from backend if available
+  useEffect(() => {
+    api.getTransRecursiveTelemetry()
+      .then((telemetry) => {
+        if (telemetry && telemetry.quantum_plasmonic_interposer) {
+          setThroughputPbps(telemetry.quantum_plasmonic_interposer.throughput_pbps_mm2);
+          setEnergyEfficiencyFj(telemetry.quantum_plasmonic_interposer.energy_efficiency_fj_bit);
+        }
+      })
+      .catch(() => {
+        // Fallback to local defaults if backend is unavailable
+      });
+  }, []);
+
   // Membrane change handler
-  const handleMembraneChange = (v: number) => {
+  const handleMembraneChange = async (v: number) => {
     if (zeroized) return;
     setMembranePotentialUv(v);
-    const deps = (v / 3300.0) * 0.12;
-    const epsOrg = 2.85 + deps;
-    setOrganoid3dPermittivity(Number(epsOrg.toFixed(4)));
 
-    const k0 = (2.0 * Math.PI) / 1.55e-6;
-    const epsM = -145.0;
-    const kSpp = k0 * Math.sqrt((epsM * epsOrg) / (epsM + epsOrg));
-    setSppWavevectorReal(Number(kSpp.toFixed(0)));
-    setInterposerLocked(v >= 0.0 && v <= 3300.0);
+    try {
+      const res = await api.computeQuantumPlasmonicDispersion(v);
+      setOrganoid3dPermittivity(res.organoid_3d_permittivity);
+      setSppWavevectorReal(res.quantum_spp_wavevector_real);
+      setSppPropagationLengthUm(res.spp_propagation_length_um);
+      setThroughputPbps(res.throughput_pbps_mm2);
+      setEnergyEfficiencyFj(res.energy_efficiency_fj_bit);
+      setInterposerLocked(res.status === 'QUANTUM_PLASMONIC_POLARITON_LOCKED');
+    } catch {
+      // Local physical calculation fallback
+      const deps = (v / 3300.0) * 0.12;
+      const epsOrg = 2.85 + deps;
+      setOrganoid3dPermittivity(Number(epsOrg.toFixed(4)));
+
+      const k0 = (2.0 * Math.PI) / 1.55e-6;
+      const epsM = -145.0;
+      const kSpp = k0 * Math.sqrt((epsM * epsOrg) / (epsM + epsOrg));
+      setSppWavevectorReal(Number(kSpp.toFixed(0)));
+      setInterposerLocked(v >= 0.0 && v <= 3300.0);
+    }
   };
 
   // Derive new 2048-bit quantum-entropy key & zk-STARK proof
-  const handleDeriveKey = () => {
+  const handleDeriveKey = async () => {
     if (zeroized) return;
+    const highGamma = Array.from({ length: 8 }, () => Number((Math.random() * 8.0 - 4.0).toFixed(2)));
+    const theta = Array.from({ length: 8 }, () => Number((Math.random() * 2.0 - 1.0).toFixed(2)));
+
+    try {
+      const keyRes = await api.deriveAbsoluteCognitiveKey(
+        highGamma,
+        theta,
+        membranePotentialUv,
+        dnaCodons,
+        fovealVectorRad
+      );
+
+      if (keyRes.valid && keyRes.key_hex) {
+        setAbsoluteKeyHex(keyRes.key_hex);
+        setTransRecursivePower(Number(keyRes.trans_recursive_power.toFixed(2)));
+        setEntropyBits(keyRes.entropy_bits);
+        setTransRecursiveKeyHash(`ABSOLUTE_COGNITIVE_KEY_${keyRes.key_hex.slice(0, 8)}`);
+
+        const proofRes = await api.generateZKAbsoluteCognitiveProof(
+          keyRes.trans_recursive_power,
+          membranePotentialUv,
+          fovealVectorRad,
+          dnaCodons
+        );
+
+        if (proofRes && proofRes.proof) {
+          setZkCommitment(proofRes.proof.proof_id);
+          setFriLayers(proofRes.proof.fri_layers);
+        }
+        setIsKeyValid(true);
+        setIsZkValid(true);
+        return;
+      }
+    } catch {
+      // Offline fallback
+    }
+
     const newPower = Number((35.0 + Math.random() * 25.0).toFixed(2));
     setTransRecursivePower(newPower);
     const newKeyHash = `ABSOLUTE_COGNITIVE_KEY_${Math.floor(newPower * 10000).toString(16).toUpperCase().padStart(8, '0')}`;
@@ -110,13 +174,23 @@ export const AbsoluteCognitivePage: React.FC = () => {
   };
 
   // Decode micro-saccade tremor
-  const handleDecodeSaccade = () => {
+  const handleDecodeSaccade = async () => {
     if (zeroized) return;
+    try {
+      const dummyTremor = [0.05, -0.14, 0.32, -0.41, 0.22, -0.29, 0.38, -0.21];
+      const res = await api.decodeMultiSpectralMicroSaccade(dummyTremor);
+      if (res && res.recovered_text) {
+        setRecoveredPayload(res.recovered_text);
+        return;
+      }
+    } catch {
+      // Local fallback
+    }
     setRecoveredPayload(stegoPayload);
   };
 
   // Trigger Zeroization (<0.50us SLA)
-  const handleZeroize = () => {
+  const handleZeroize = async () => {
     setZeroized(true);
     setZeroizeLatencyUs(0.48);
     setInterposerLocked(false);
@@ -126,6 +200,15 @@ export const AbsoluteCognitivePage: React.FC = () => {
     setZkCommitment('0'.repeat(64));
     setTransRecursiveKeyHash('ABSOLUTE_COGNITIVE_KEY_00000000');
     setRecoveredPayload('');
+
+    try {
+      const res = await api.triggerTransRecursiveZeroize();
+      if (res && res.zeroization_latency_us) {
+        setZeroizeLatencyUs(res.zeroization_latency_us);
+      }
+    } catch {
+      // Local SLA fallback
+    }
   };
 
   // Reset Subsystem

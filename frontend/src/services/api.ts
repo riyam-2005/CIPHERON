@@ -69,7 +69,17 @@ import {
   MemristorFrequencyResult,
   ZKSTARKProofResult,
   ZKSTARKVerificationResult,
-  MicrofluidicTelemetry
+  MicrofluidicTelemetry,
+  TransRecursiveTelemetry,
+  QuantumPlasmonicDispersionResult,
+  TransRecursiveKeyResult,
+  TransRecursivePSDResult,
+  MultiSpectralMicroSaccadeDecodeResult,
+  MultiSpectralMicroSaccadeModulateResult,
+  AbsoluteCognitiveKeyDeriveResult,
+  ZKAbsoluteCognitiveProofResult,
+  ZKAbsoluteCognitiveVerifyResult,
+  TransRecursiveZeroizeResult
 } from '../types';
 
 
@@ -726,6 +736,100 @@ export const api = {
       body: JSON.stringify({
         trigger_source: triggerSource
       })
+    }),
+
+  // V26.0 Trans-Recursive Absolute Bio-Cognitive API
+  getTransRecursiveTelemetry: () =>
+    fetchJson<TransRecursiveTelemetry>('/trans-recursive/telemetry'),
+
+  computeQuantumPlasmonicDispersion: (membranePotentialUv: number) =>
+    fetchJson<QuantumPlasmonicDispersionResult>('/trans-recursive/quantum-plasmonic-dispersion', {
+      method: 'POST',
+      body: JSON.stringify({ membrane_potential_uv: membranePotentialUv })
+    }),
+
+  extractHighGammaKey: (highGammaSamples: number[], thetaSamples: number[]) =>
+    fetchJson<TransRecursiveKeyResult>('/trans-recursive/high-gamma-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        high_gamma_samples: highGammaSamples,
+        theta_samples: thetaSamples
+      })
+    }),
+
+  computeTransRecursivePsd: (highGammaSamples: number[], thetaSamples: number[], phaseSync = 0.95) =>
+    fetchJson<TransRecursivePSDResult>('/trans-recursive/trans-recursive-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        high_gamma_samples: highGammaSamples,
+        theta_samples: thetaSamples,
+        phase_sync: phaseSync
+      })
+    }),
+
+  decodeMultiSpectralMicroSaccade: (tremorSignal: number[]) =>
+    fetchJson<MultiSpectralMicroSaccadeDecodeResult>('/trans-recursive/decode-saccade', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateMultiSpectralMicroSaccade: (payloadText: string, carrierFreqHz = 95.0, durationS = 0.5) =>
+    fetchJson<MultiSpectralMicroSaccadeModulateResult>('/trans-recursive/modulate-saccade', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveAbsoluteCognitiveKey: (
+    highGammaSamples: number[],
+    thetaSamples: number[],
+    plasmonicIntensityUv: number,
+    dnaCodonStream: string,
+    fovealVectorRad: number,
+    salt?: string
+  ) =>
+    fetchJson<AbsoluteCognitiveKeyDeriveResult>('/trans-recursive/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        high_gamma_samples: highGammaSamples,
+        theta_samples: thetaSamples,
+        plasmonic_intensity_uv: plasmonicIntensityUv,
+        dna_codon_stream: dnaCodonStream,
+        foveal_vector_rad: fovealVectorRad,
+        salt: salt
+      })
+    }),
+
+  generateZKAbsoluteCognitiveProof: (
+    transRecursivePower: number,
+    plasmonicIntensityUv: number,
+    fovealVectorRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_ABSOLUTE_01'
+  ) =>
+    fetchJson<ZKAbsoluteCognitiveProofResult>('/trans-recursive/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        trans_recursive_power: transRecursivePower,
+        plasmonic_intensity_uv: plasmonicIntensityUv,
+        foveal_vector_rad: fovealVectorRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKAbsoluteCognitiveProof: (proof: any) =>
+    fetchJson<ZKAbsoluteCognitiveVerifyResult>('/trans-recursive/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerTransRecursiveZeroize: () =>
+    fetchJson<TransRecursiveZeroizeResult>('/trans-recursive/zeroize', {
+      method: 'POST'
     })
 };
 
