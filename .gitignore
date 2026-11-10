@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# C / C++ / Firmware build artifacts
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.exe
+*.out
+*.app
+*.d
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+.ninja_*
+ninja.log
+
+# Databases & Cache
+*.db
+*.sqlite
+*.sqlite3
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Node & Frontend dependencies and builds
+node_modules/
+.pnpm-store/
+.yarn/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and Secrets
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
