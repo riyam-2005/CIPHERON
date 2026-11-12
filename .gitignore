@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyd
+*.egg-info/
+*.egg
 
 # C / C++ / Firmware build artifacts
 *.o
@@ -42,6 +44,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Environment and Secrets
+.venv/
+venv/
 .env
 .env.*
 !.env.example

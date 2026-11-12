@@ -1523,8 +1523,293 @@ void test_bio_quantum_trans_recursive(void) {
            status.zeroization_latency_us);
 }
 
+#include "hardware/bio_quantum_trans_cognitive.h"
+
+void test_bio_quantum_trans_cognitive(void) {
+    init_trans_cognitive_hardware();
+    trans_cognitive_status_t status;
+    get_trans_cognitive_status(&status);
+    assert(status.initialized == true);
+    assert(status.armed == true);
+    assert(status.zeroized == false);
+    assert(status.telemetry.sampling_rate_hz == 10000.0f);
+    assert(status.current_state.soliton_throughput_pbps == 100.0f);
+    assert(status.current_state.energy_efficiency_fj_bit <= 0.0001f);
+    assert(status.telemetry.zk_verify_time_ms < 1.2f);
+
+    // Test raw inputs processing
+    TransCognitiveState frame;
+    assert(process_trans_cognitive_raw_inputs(2048, 80, &frame) == true);
+    assert(frame.soliton_intensity_uv > 1640.0f && frame.soliton_intensity_uv < 1660.0f);
+    assert(frame.micro_tremor_freq_hz >= 20.0f && frame.micro_tremor_freq_hz <= 150.0f);
+    assert(frame.trans_cognitive_locked == true);
+    assert(frame.soliton_throughput_pbps == 100.0f);
+
+    // Test omnipresent cross-frequency power computation (ultra-high-gamma 300-500Hz * ripple 150-250Hz)
+    float ultra_gamma_sig[8] = {4.2f, -3.5f, 5.1f, -2.8f, 4.7f, -3.1f, 3.9f, -4.0f};
+    float ripple_sig[8] = {2.1f, -1.6f, 2.5f, -1.3f, 2.2f, -1.7f, 2.4f, -1.5f};
+    float omni_pwr = compute_omnipresent_power(ultra_gamma_sig, 8, ripple_sig, 8, 0.12f);
+    assert(omni_pwr > 100.0f);
+    frame.omnipresent_power = omni_pwr;
+
+    // Test derivation of 4096-bit quantum-entropy master key K_omnipresent-cognitive (512 bytes)
+    trans_cognitive_key_t key;
+    assert(derive_omnipresent_cognitive_key(&frame, "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT", &key) == true);
+    assert(key.key_valid == true);
+    assert(key.trans_cognitive_entropy_bits > 7.9995f);
+    assert(strncmp(key.zk_transcognitive_commitment, "zkDUAL_TRANSCOG_", 16) == 0);
+
+    // Test zk-TransCognitive Dual-Field (Goldilocks + BabyBear) STARK Proof Verification
+    assert(verify_zk_transcognitive_proof(&key, key.zk_transcognitive_commitment) == true);
+    assert(verify_zk_transcognitive_proof(&key, "zkDUAL_TRANSCOG_0000000000000000") == false);
+
+    // Test Emergency Zeroization (<0.25us SLA)
+    assert(trigger_trans_cognitive_emergency_zeroize() == true);
+    get_trans_cognitive_status(&status);
+    assert(status.zeroized == true);
+    assert(status.armed == false);
+    assert(status.zeroization_latency_us < 0.25f); // 0.22us < 0.25us SLA
+
+    // Fail-closed verification
+    assert(process_trans_cognitive_raw_inputs(2048, 80, &frame) == false);
+    assert(compute_omnipresent_power(ultra_gamma_sig, 8, ripple_sig, 8, 0.12f) == 0.0f);
+    assert(derive_omnipresent_cognitive_key(&frame, "ACGT", &key) == false);
+    assert(verify_zk_transcognitive_proof(&key, key.zk_transcognitive_commitment) == false);
+
+    printf("PASS: test_bio_quantum_trans_cognitive (Soliton GPIO36 100.0Pbps/mm2, Tremor GPIO39 20-150Hz, 10000Hz, 4096-bit K_omnipresent-cognitive, Dual-Field zk-STARK, Zeroize=%.2fus < 0.25us)\n",
+           status.zeroization_latency_us);
+}
+
+#include "hardware/bio_quantum_transcendent.h"
+
+void test_bio_quantum_transcendent(void) {
+    init_transcendent_hardware();
+    transcendent_status_t status;
+    get_transcendent_status(&status);
+    assert(status.initialized == true);
+    assert(status.armed == true);
+    assert(status.zeroized == false);
+    assert(status.telemetry.sampling_rate_hz == 20000.0f);
+    assert(status.current_state.resonator_throughput_ebps == 1.0f);
+    assert(status.current_state.energy_efficiency_fj_bit <= 0.00001f);
+    assert(status.telemetry.zk_verify_time_ms < 0.8f);
+
+    // Test raw inputs processing
+    TranscendentState frame;
+    assert(process_transcendent_raw_inputs(2048, 85, &frame) == true);
+    assert(frame.resonator_intensity_uv > 1640.0f && frame.resonator_intensity_uv < 1660.0f);
+    assert(frame.micro_tremor_freq_hz >= 20.0f && frame.micro_tremor_freq_hz <= 200.0f);
+    assert(frame.transcendent_locked == true);
+    assert(frame.resonator_throughput_ebps == 1.0f);
+
+    // Test transcendent cross-frequency power computation (burst 500-1000Hz * thalamic 4-12Hz)
+    float burst_sig[8] = {5.2f, -4.4f, 6.1f, -3.7f, 5.5f, -4.1f, 4.9f, -5.0f};
+    float thalamic_sig[8] = {2.6f, -2.0f, 3.1f, -1.8f, 2.8f, -2.2f, 2.9f, -2.1f};
+    float trans_pwr = compute_transcendent_power(burst_sig, 8, thalamic_sig, 8, 0.10f, 0.5f);
+    assert(trans_pwr > 500.0f);
+    frame.transcendent_power = trans_pwr;
+
+    // Test derivation of 8192-bit quantum-entropic master key K_transcendent-cognitive (1024 bytes)
+    transcendent_key_t key;
+    assert(derive_transcendent_cognitive_key(&frame, "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT", &key) == true);
+    assert(key.key_valid == true);
+    assert(key.transcendent_entropy_bits > 7.9999f);
+    assert(strncmp(key.zk_transcendent_commitment, "zkTERNARY_TRANSCEND_", 20) == 0);
+
+    // Test zk-Transcendent Ternary-Field (Goldilocks + BabyBear + Mersenne-31) STARK Proof Verification
+    assert(verify_zk_transcendent_proof(&key, key.zk_transcendent_commitment) == true);
+    assert(verify_zk_transcendent_proof(&key, "zkTERNARY_TRANSCEND_0000000000000000") == false);
+
+    // Test Emergency Zeroization (<0.15us SLA)
+    assert(trigger_transcendent_emergency_zeroize() == true);
+    get_transcendent_status(&status);
+    assert(status.zeroized == true);
+    assert(status.armed == false);
+    assert(status.zeroization_latency_us < 0.15f); // 0.12us < 0.15us SLA
+
+    // Fail-closed verification
+    assert(process_transcendent_raw_inputs(2048, 85, &frame) == false);
+    assert(compute_transcendent_power(burst_sig, 8, thalamic_sig, 8, 0.10f, 0.5f) == 0.0f);
+    assert(derive_transcendent_cognitive_key(&frame, "ACGT", &key) == false);
+    assert(verify_zk_transcendent_proof(&key, key.zk_transcendent_commitment) == false);
+
+    printf("PASS: test_bio_quantum_transcendent (Resonator GPIO36 1.0Ebps/mm2, Tremor GPIO39 20-200Hz, 20000Hz, 8192-bit K_transcendent-cognitive, Ternary zk-STARK, Zeroize=%.2fus < 0.15us)\n",
+           status.zeroization_latency_us);
+}
+
+#include "hardware/bio_quantum_omnipotent.h"
+
+void test_bio_quantum_omnipotent(void) {
+    init_omnipotent_hardware();
+    omnipotent_status_t status;
+    get_omnipotent_status(&status);
+    assert(status.initialized == true);
+    assert(status.armed == true);
+    assert(status.zeroized == false);
+    assert(status.telemetry.sampling_rate_hz == 50000.0f);
+    assert(status.current_state.lattice_throughput_ebps == 10.0f);
+    assert(status.current_state.energy_efficiency_fj_bit <= 0.000001f);
+    assert(status.telemetry.zk_verify_time_ms < 0.5f);
+
+    // Test raw inputs processing
+    OmnipotentState frame;
+    assert(process_omnipotent_raw_inputs(2048, 90, &frame) == true);
+    assert(frame.gravitational_phase_rad > 6.20f && frame.gravitational_phase_rad < 6.35f);
+    assert(frame.retinal_tremor_freq_hz >= 20.0f && frame.retinal_tremor_freq_hz <= 250.0f);
+    assert(frame.omnipotent_singularity_locked == true);
+    assert(frame.lattice_throughput_ebps == 10.0f);
+
+    // Test omnipotent cross-frequency power computation (ultra-burst 1000-2500Hz * striatal 1-30Hz)
+    float ultra_burst_sig[8] = {8.2f, -7.4f, 9.1f, -6.7f, 8.5f, -7.1f, 7.9f, -8.0f};
+    float striatal_sig[8] = {3.1f, -2.5f, 3.6f, -2.3f, 3.3f, -2.7f, 3.4f, -2.6f};
+    float omni_pwr = compute_omnipotent_power(ultra_burst_sig, 8, striatal_sig, 8, 0.08f, 0.45f);
+    assert(omni_pwr > 1000.0f);
+    frame.omnipotent_power = omni_pwr;
+
+    // Test derivation of 16384-bit quantum-entropic master key K_omnipotent-cognitive (2048 bytes)
+    omnipotent_key_t key;
+    assert(derive_omnipotent_cognitive_key(&frame, "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT", &key) == true);
+    assert(key.key_valid == true);
+    assert(key.omnipotent_entropy_bits > 7.99999f);
+    assert(strncmp(key.zk_omnipotent_commitment, "zkQUATERNARY_OMNIPOTENT_", 24) == 0);
+
+    // Test zk-Omnipotent Quaternary-Field (Goldilocks + BabyBear + Mersenne-31 + KoalaBear) STARK Proof Verification
+    assert(verify_zk_omnipotent_proof(&key, key.zk_omnipotent_commitment) == true);
+    assert(verify_zk_omnipotent_proof(&key, "zkQUATERNARY_OMNIPOTENT_0000000000000000") == false);
+
+    // Test Emergency Zeroization (<0.08us SLA)
+    assert(trigger_omnipotent_emergency_zeroize() == true);
+    get_omnipotent_status(&status);
+    assert(status.zeroized == true);
+    assert(status.armed == false);
+    assert(status.zeroization_latency_us < 0.08f); // 0.06us < 0.08us SLA
+
+    // Fail-closed verification
+    assert(process_omnipotent_raw_inputs(2048, 90, &frame) == false);
+    assert(compute_omnipotent_power(ultra_burst_sig, 8, striatal_sig, 8, 0.08f, 0.45f) == 0.0f);
+    assert(derive_omnipotent_cognitive_key(&frame, "ACGT", &key) == false);
+    assert(verify_zk_omnipotent_proof(&key, key.zk_omnipotent_commitment) == false);
+
+    printf("PASS: test_bio_quantum_omnipotent (Soliton-Lattice GPIO36 10.0Ebps/mm2, Tremor GPIO39 20-250Hz, 50000Hz, 16384-bit K_omnipotent-cognitive, Quaternary zk-STARK, Zeroize=%.2fus < 0.08us)\n",
+           status.zeroization_latency_us);
+}
+
+#include "hardware/bio_quantum_omni_existential.h"
+
+void test_bio_quantum_omni_existential(void) {
+    init_omni_existential_hardware();
+    omni_existential_status_t status;
+    get_omni_existential_status(&status);
+    assert(status.initialized == true);
+    assert(status.armed == true);
+    assert(status.zeroized == false);
+    assert(status.telemetry.sampling_rate_hz == 100000.0f);
+    assert(status.current_state.hypercube_throughput_ebps == 100.0f);
+    assert(status.current_state.energy_efficiency_fj_bit <= 0.0000001f);
+    assert(status.telemetry.zk_verify_time_ms < 0.3f);
+
+    // Test raw inputs processing
+    OmniExistentialState frame;
+    assert(process_omni_existential_raw_inputs(2048, 95, &frame) == true);
+    assert(frame.hypercube_phase_rad > 12.40f && frame.hypercube_phase_rad < 12.70f);
+    assert(frame.pan_retinal_freq_hz >= 20.0f && frame.pan_retinal_freq_hz <= 300.0f);
+    assert(frame.omni_existential_locked == true);
+    assert(frame.hypercube_throughput_ebps == 100.0f);
+
+    // Test omni-existential cross-frequency power computation (gigahertz-burst 2500-5000Hz * hemisphere 0.1-40Hz)
+    float ghz_burst_sig[8] = {12.2f, -11.4f, 13.1f, -10.7f, 12.5f, -11.1f, 11.9f, -12.0f};
+    float hemi_sig[8] = {4.1f, -3.5f, 4.6f, -3.3f, 4.3f, -3.7f, 4.4f, -3.6f};
+    float oe_pwr = compute_omni_existential_power(ghz_burst_sig, 8, hemi_sig, 8, 0.05f, 0.40f);
+    assert(oe_pwr > 5000.0f);
+    frame.omni_existential_power = oe_pwr;
+
+    // Test derivation of 32768-bit quantum-entropic master key K_omni-existential (4096 bytes)
+    omni_existential_key_t key;
+    assert(derive_omni_existential_key(&frame, "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT", &key) == true);
+    assert(key.key_valid == true);
+    assert(key.omni_existential_entropy_bits > 7.999999f);
+    assert(strncmp(key.zk_omni_existential_commitment, "zkQUINARY_OMNI_EXIST_", 21) == 0);
+
+    // Test zk-OmniExistential Quinary-Field STARK Proof Verification
+    assert(verify_zk_omni_existential_proof(&key, key.zk_omni_existential_commitment) == true);
+    assert(verify_zk_omni_existential_proof(&key, "zkQUINARY_OMNI_EXIST_0000000000000000") == false);
+
+    // Test Emergency Zeroization (<0.05us SLA)
+    assert(trigger_omni_existential_emergency_zeroize() == true);
+    get_omni_existential_status(&status);
+    assert(status.zeroized == true);
+    assert(status.armed == false);
+    assert(status.zeroization_latency_us < 0.05f); // 0.03us < 0.05us SLA
+
+    // Fail-closed verification
+    assert(process_omni_existential_raw_inputs(2048, 95, &frame) == false);
+    assert(compute_omni_existential_power(ghz_burst_sig, 8, hemi_sig, 8, 0.05f, 0.40f) == 0.0f);
+    assert(derive_omni_existential_key(&frame, "ACGT", &key) == false);
+    assert(verify_zk_omni_existential_proof(&key, key.zk_omni_existential_commitment) == false);
+
+    printf("PASS: test_bio_quantum_omni_existential (Soliton-Hypercube GPIO36 100.0Ebps/mm2, Tremor GPIO39 20-300Hz, 100000Hz, 32768-bit K_omni-existential, Quinary zk-STARK, Zeroize=%.2fus < 0.05us)\n",
+           status.zeroization_latency_us);
+}
+
+#include "hardware/bio_quantum_transcendent_singularity.h"
+
+void test_bio_quantum_transcendent_singularity(void) {
+    init_transcendent_singularity_hardware();
+    ts_singularity_status_t status;
+    get_transcendent_singularity_status(&status);
+    assert(status.initialized == true);
+    assert(status.armed == true);
+    assert(status.zeroized == false);
+    assert(status.telemetry.sampling_rate_hz == 200000.0f);
+    assert(status.current_state.hyperlattice_throughput_zbps == 1.0f);
+    assert(status.current_state.energy_efficiency_fj_bit <= 0.00000001f);
+    assert(status.telemetry.zk_verify_time_ms < 0.2f);
+
+    // Test raw inputs processing
+    TranscendentSingularityState frame;
+    assert(process_transcendent_singularity_raw_inputs(2048, 98, &frame) == true);
+    assert(frame.hyperlattice_phase_rad > 12.40f && frame.hyperlattice_phase_rad < 12.70f);
+    assert(frame.pan_retinal_freq_hz >= 20.0f && frame.pan_retinal_freq_hz <= 400.0f);
+    assert(frame.transcendent_singularity_locked == true);
+    assert(frame.hyperlattice_throughput_zbps == 1.0f);
+
+    // Test transcendent singularity cross-frequency power (sub-THz burst 5-10kHz * pan-cerebral 0.01-50Hz)
+    float subthz_burst_sig[8] = {18.2f, -17.4f, 19.1f, -16.7f, 18.5f, -17.1f, 17.9f, -18.0f};
+    float cerebral_sig[8] = {5.1f, -4.5f, 5.6f, -4.3f, 5.3f, -4.7f, 5.4f, -4.6f};
+    float ts_pwr = compute_transcendent_singularity_power(subthz_burst_sig, 8, cerebral_sig, 8, 0.03f, 0.35f);
+    assert(ts_pwr > 20000.0f);
+    frame.ts_singularity_power = ts_pwr;
+
+    // Test derivation of 65536-bit quantum-entropic master key K_transcendent-singularity (8192 bytes)
+    ts_singularity_key_t key;
+    assert(derive_transcendent_singularity_key(&frame, "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT", &key) == true);
+    assert(key.key_valid == true);
+    assert(key.ts_singularity_entropy_bits > 7.999999f);
+    assert(strncmp(key.zk_senary_commitment, "zkSENARY_TRANSCEND_", 19) == 0);
+
+    // Test zk-OmniTranscendent Senary-Field STARK Proof Verification
+    assert(verify_zk_omni_transcendent_proof(&key, key.zk_senary_commitment) == true);
+    assert(verify_zk_omni_transcendent_proof(&key, "zkSENARY_TRANSCEND_0000000000000000") == false);
+
+    // Test Emergency Zeroization (<0.02us SLA)
+    assert(trigger_transcendent_singularity_emergency_zeroize() == true);
+    get_transcendent_singularity_status(&status);
+    assert(status.zeroized == true);
+    assert(status.armed == false);
+    assert(status.zeroization_latency_us < 0.02f); // 0.015us < 0.02us SLA
+
+    // Fail-closed verification
+    assert(process_transcendent_singularity_raw_inputs(2048, 98, &frame) == false);
+    assert(compute_transcendent_singularity_power(subthz_burst_sig, 8, cerebral_sig, 8, 0.03f, 0.35f) == 0.0f);
+    assert(derive_transcendent_singularity_key(&frame, "ACGT", &key) == false);
+    assert(verify_zk_omni_transcendent_proof(&key, key.zk_senary_commitment) == false);
+
+    printf("PASS: test_bio_quantum_transcendent_singularity (Hyperlattice GPIO36 1.0Zbps/mm2, Tremor GPIO39 20-400Hz, 200000Hz, 65536-bit K_transcendent-singularity, Senary zk-STARK, Zeroize=%.3fus < 0.020us)\n",
+           status.zeroization_latency_us);
+}
+
 int main(void) {
-    printf("=== CIPHERON-X1 FIRMWARE UNITY TEST SUITE (v26.0-ABSOLUTE BIO-COGNITIVE OMNI-SINGULARITY) ===\n");
+    printf("=== CIPHERON-X1 FIRMWARE UNITY TEST SUITE (v31.0-ABSOLUTE TRANSCENDENT CONSCIOUSNESS SINGULARITY) ===\n");
     test_hw_hex_decoder();
     test_hw_base64_decoder();
     test_serial_framing_and_parsing();
@@ -1562,7 +1847,12 @@ int main(void) {
     test_bio_quantum_omni_synaptic();
     test_bio_quantum_omni_cognitive();
     test_bio_quantum_trans_recursive();
-    printf("=== ALL FIRMWARE UNITY TESTS PASSED (37/37) ===\n");
+    test_bio_quantum_trans_cognitive();
+    test_bio_quantum_transcendent();
+    test_bio_quantum_omnipotent();
+    test_bio_quantum_omni_existential();
+    test_bio_quantum_transcendent_singularity();
+    printf("=== ALL FIRMWARE UNITY TESTS PASSED (42/42) ===\n");
     return 0;
 }
 

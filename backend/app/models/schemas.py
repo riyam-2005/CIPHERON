@@ -834,6 +834,355 @@ class ZKAbsoluteCognitiveVerifyRequest(BaseModel):
     proof: Dict[str, Any] = Field(description="zk-AbsoluteCognitive Goldilocks STARK-FRI proof object to verify")
 
 
+# --- 41. V27.0.0-OMNIPRESENT BIO-QUANTUM CONVERGENCE (suggestion-v26.md) ---
+
+class TransCognitiveKeyRequest(BaseModel):
+    ultra_high_gamma: List[float] = Field(
+        default=[4.2, -3.5, 5.1, -2.8, 4.7, -3.1, 3.9, -4.0],
+        description="Ultra-high-gamma band (300-500Hz) cortical signal array"
+    )
+    ripple_samples: List[float] = Field(
+        default=[2.1, -1.6, 2.5, -1.3, 2.2, -1.7, 2.4, -1.5],
+        description="Hippocampal sharp-wave ripple band (150-250Hz) signal array"
+    )
+
+class RetinalCorticalDecodeRequest(BaseModel):
+    tremor_signal: List[float] = Field(
+        default=[0.08, -0.19, 0.35, -0.44, 0.25, -0.31, 0.41, -0.24],
+        description="Bi-directional trans-foveal retinal-cortical micro-tremor signal samples (20Hz-150Hz)"
+    )
+
+class RetinalCorticalModulateRequest(BaseModel):
+    payload_text: str = Field(default="OMNIPRESENT", description="Secret payload text to modulate onto retinal-cortical tremor carrier")
+    carrier_freq_hz: float = Field(default=110.0, ge=20.0, le=150.0, description="Carrier frequency in Hz (20Hz-150Hz)")
+    duration_s: float = Field(default=0.5, ge=0.05, le=5.0, description="Signal duration in seconds")
+
+class TransCognitivePSDRequest(BaseModel):
+    ultra_high_gamma: List[float] = Field(
+        default=[4.2, -3.5, 5.1, -2.8, 4.7, -3.1, 3.9, -4.0],
+        description="Ultra-high-gamma band (300-500Hz) cortical signal array"
+    )
+    ripple_samples: List[float] = Field(
+        default=[2.1, -1.6, 2.5, -1.3, 2.2, -1.7, 2.4, -1.5],
+        description="Hippocampal sharp-wave ripple band (150-250Hz) signal array"
+    )
+    phase_sync: float = Field(default=0.97, ge=-1.0, le=1.0, description="Neuro-holographic phase synchronization coefficient")
+
+class SolitonWavepacketRequest(BaseModel):
+    soliton_intensity_uv: float = Field(
+        default=1650.0, ge=0.0, le=3300.0,
+        description="Optical-topological soliton interposer intensity in microvolts"
+    )
+    topological_potential: float = Field(
+        default=1.25, ge=0.1, le=10.0,
+        description="Synthetic 3D cortical organoid topological confining potential"
+    )
+
+class OmnipresentCognitiveKeyDeriveRequest(BaseModel):
+    ultra_high_gamma: List[float] = Field(
+        default=[4.2, -3.5, 5.1, -2.8, 4.7, -3.1, 3.9, -4.0],
+        description="Ultra-high-gamma band (300-500Hz) samples"
+    )
+    ripple_samples: List[float] = Field(
+        default=[2.1, -1.6, 2.5, -1.3, 2.2, -1.7, 2.4, -1.5],
+        description="Hippocampal sharp-wave ripple (150-250Hz) samples"
+    )
+    soliton_intensity_uv: float = Field(default=1650.0, ge=0.0, le=3300.0, description="Soliton optical sensor intensity in microvolts")
+    dna_codon_stream: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="Synthetic biological DNA codon strand")
+    foveal_manifold_rad: float = Field(default=0.018, description="Trans-foveal retinal manifold angle in radians")
+    salt: Optional[str] = Field(default=None, description="Optional custom optical-topological soliton salt")
+
+class ZKTransCognitiveProofRequest(BaseModel):
+    omnipresent_power: float = Field(default=96.4, ge=0.0, description="Cross-frequency ultra-high-gamma & hippocampal ripple omnipresent power")
+    soliton_intensity_uv: float = Field(default=1650.0, ge=0.0, le=3300.0, description="Soliton optical intensity in microvolts")
+    foveal_manifold_rad: float = Field(default=0.018, description="Trans-foveal manifold vector in radians")
+    dna_codons: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="DNA codon witness strand")
+    user_identity: str = Field(default="OPERATOR_OMNIPRESENT_01", description="Operator identity seed")
+
+class ZKTransCognitiveVerifyRequest(BaseModel):
+    proof: Dict[str, Any] = Field(description="zk-TransCognitive dual-field (Goldilocks + BabyBear) STARK proof object to verify")
+
+
+# --- 42. V28.0.0-TRANSCENDENT BIO-QUANTUM SINGULARITY (suggestion-v27.md) ---
+
+class TranscendentKeyRequest(BaseModel):
+    burst_samples: List[float] = Field(
+        default=[5.2, -4.4, 6.1, -3.7, 5.5, -4.1, 4.9, -5.0],
+        description="Trans-spectral burst band (500-1000Hz) cortical signal array"
+    )
+    thalamic_samples: List[float] = Field(
+        default=[2.6, -2.0, 3.1, -1.8, 2.8, -2.2, 2.9, -2.1],
+        description="Thalamocortical reverberation loop band (4-12Hz) signal array"
+    )
+
+class EntangledRetinalDecodeRequest(BaseModel):
+    tremor_signal: List[float] = Field(
+        default=[0.10, -0.22, 0.39, -0.48, 0.28, -0.34, 0.45, -0.27],
+        description="Continuous quantum-entangled retinal-cortical micro-tremor samples (20Hz-200Hz)"
+    )
+
+class EntangledRetinalModulateRequest(BaseModel):
+    payload_text: str = Field(default="TRANSCENDENT", description="Secret payload text to modulate onto entangled retinal-cortical carrier")
+    carrier_freq_hz: float = Field(default=140.0, ge=20.0, le=200.0, description="Carrier frequency in Hz (20Hz-200Hz)")
+    duration_s: float = Field(default=0.5, ge=0.05, le=5.0, description="Signal duration in seconds")
+
+class TranscendentPSDRequest(BaseModel):
+    burst_samples: List[float] = Field(
+        default=[5.2, -4.4, 6.1, -3.7, 5.5, -4.1, 4.9, -5.0],
+        description="Trans-spectral burst band (500-1000Hz) cortical signal array"
+    )
+    thalamic_samples: List[float] = Field(
+        default=[2.6, -2.0, 3.1, -1.8, 2.8, -2.2, 2.9, -2.1],
+        description="Thalamocortical reverberation loop band (4-12Hz) signal array"
+    )
+    phase_diff_rad: float = Field(default=0.10, description="Phase discrepancy in radians")
+    sigma: float = Field(default=0.50, gt=0.0, description="Gaussian phase coherence bandwidth sigma")
+
+class ResonatorWavefunctionRequest(BaseModel):
+    resonator_intensity_uv: float = Field(
+        default=1650.0, ge=0.0, le=3300.0,
+        description="Trans-Planckian optical-soliton resonator intensity in microvolts"
+    )
+    vacuum_potential: float = Field(
+        default=1.85, ge=0.1, le=10.0,
+        description="Quantum vacuum polarization potential in diamondoid bio-neural matrix"
+    )
+
+class TranscendentKeyDeriveRequest(BaseModel):
+    burst_samples: List[float] = Field(
+        default=[5.2, -4.4, 6.1, -3.7, 5.5, -4.1],
+        description="Trans-spectral burst band (500-1000Hz) samples"
+    )
+    thalamic_samples: List[float] = Field(
+        default=[2.6, -2.0, 3.1, -1.8, 2.8, -2.2],
+        description="Thalamocortical reverberation loop (4-12Hz) samples"
+    )
+    resonator_intensity_uv: float = Field(default=1650.0, ge=0.0, le=3300.0, description="Resonator optical intensity in microvolts")
+    dna_codon_stream: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="Genetically stabilized DNA codon strand")
+    retinal_tensor_rad: float = Field(default=0.012, description="Quantum-entangled retinal tensor angle in radians")
+    salt: Optional[str] = Field(default=None, description="Optional custom trans-Planckian resonator salt")
+
+class ZKTranscendentProofRequest(BaseModel):
+    transcendent_power: float = Field(default=214.6, ge=0.0, description="Omni-recursive transcendent cross-frequency power")
+    resonator_intensity_uv: float = Field(default=1650.0, ge=0.0, le=3300.0, description="Resonator optical intensity in microvolts")
+    retinal_tensor_rad: float = Field(default=0.012, description="Entangled retinal tensor vector in radians")
+    dna_codons: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="DNA codon witness strand")
+    user_identity: str = Field(default="OPERATOR_TRANSCENDENT_01", description="Operator identity seed")
+
+class ZKTranscendentVerifyRequest(BaseModel):
+    proof: Dict[str, Any] = Field(description="zk-Transcendent ternary-field (Goldilocks + BabyBear + Mersenne-31) STARK proof object to verify")
+
+
+# --- 43. V29.0.0-OMNIPOTENT BIO-QUANTUM REALITY SINGULARITY (suggestion-v28.md) ---
+
+class OmnipotentKeyRequest(BaseModel):
+    ultra_burst_samples: List[float] = Field(
+        default=[8.2, -7.4, 9.1, -6.7, 8.5, -7.1, 7.9, -8.0],
+        description="Ultra-high-frequency burst band (1000-2500Hz) cortical signal array"
+    )
+    striatal_samples: List[float] = Field(
+        default=[3.1, -2.5, 3.6, -2.3, 3.3, -2.7, 3.4, -2.6],
+        description="Corticostriatal-thalamic reverberation loop band (1-30Hz) signal array"
+    )
+
+class SqueezedRetinalDecodeRequest(BaseModel):
+    tremor_signal: List[float] = Field(
+        default=[0.12, -0.25, 0.42, -0.51, 0.30, -0.38, 0.49, -0.29],
+        description="Full-duplex squeezed-state retinal-cortical micro-tremor samples (20Hz-250Hz)"
+    )
+
+class SqueezedRetinalModulateRequest(BaseModel):
+    payload_text: str = Field(default="OMNIPOTENT", description="Secret payload text to modulate onto squeezed-state retinal carrier")
+    carrier_freq_hz: float = Field(default=180.0, ge=20.0, le=250.0, description="Carrier frequency in Hz (20Hz-250Hz)")
+    duration_s: float = Field(default=0.2, ge=0.05, le=2.0, description="Signal duration in seconds")
+
+class OmnipotentPSDRequest(BaseModel):
+    ultra_burst_samples: List[float] = Field(
+        default=[8.2, -7.4, 9.1, -6.7, 8.5, -7.1, 7.9, -8.0],
+        description="Ultra-high-frequency burst band (1000-2500Hz) cortical signal array"
+    )
+    striatal_samples: List[float] = Field(
+        default=[3.1, -2.5, 3.6, -2.3, 3.3, -2.7, 3.4, -2.6],
+        description="Corticostriatal-thalamic loop band (1-30Hz) signal array"
+    )
+    phase_diff_rad: float = Field(default=0.08, description="Phase discrepancy in radians")
+    sigma_grav: float = Field(default=0.45, gt=0.0, description="Gravitational phase coherence bandwidth sigma_grav")
+
+class GravitationalLatticeRequest(BaseModel):
+    gravitational_phase_rad: float = Field(
+        default=6.283185, ge=0.0, le=12.566371,
+        description="Gravitational soliton phase in radians (0 to 4*PI)"
+    )
+    metric_curvature: float = Field(
+        default=2.40, ge=0.1, le=10.0,
+        description="Einstein-Klein-Gordon-Schrödinger metric curvature potential"
+    )
+
+class OmnipotentKeyDeriveRequest(BaseModel):
+    ultra_burst_samples: List[float] = Field(
+        default=[8.2, -7.4, 9.1, -6.7, 8.5, -7.1],
+        description="Ultra-burst band (1000-2500Hz) samples"
+    )
+    striatal_samples: List[float] = Field(
+        default=[3.1, -2.5, 3.6, -2.3, 3.3, -2.7],
+        description="Corticostriatal-thalamic loop (1-30Hz) samples"
+    )
+    gravitational_phase_rad: float = Field(default=6.283185, ge=0.0, le=12.566371, description="Gravitational soliton phase in radians")
+    dna_codon_stream: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="Bio-synthetic scaffold DNA codon strand")
+    retinal_manifold_rad: float = Field(default=0.008, description="Squeezed-state retinal manifold angle in radians")
+    salt: Optional[str] = Field(default=None, description="Optional custom gravitational soliton salt")
+
+class ZKOmnipotentProofRequest(BaseModel):
+    omnipotent_power: float = Field(default=485.2, ge=0.0, description="Ultra-burst & corticostriatal cross-frequency power")
+    gravitational_phase_rad: float = Field(default=6.283185, ge=0.0, le=12.566371, description="Gravitational soliton phase in radians")
+    retinal_manifold_rad: float = Field(default=0.008, description="Squeezed-state retinal manifold vector in radians")
+    dna_codons: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="DNA codon witness strand")
+    user_identity: str = Field(default="OPERATOR_OMNIPOTENT_01", description="Operator identity seed")
+
+class ZKOmnipotentVerifyRequest(BaseModel):
+    proof: Dict[str, Any] = Field(description="zk-Omnipotent quaternary-field (Goldilocks+BabyBear+Mersenne31+KoalaBear) STARK proof object to verify")
+
+
+# --- 44. V30.0.0-ABSOLUTE OMNI-EXISTENTIAL CONSCIOUSNESS (suggestion-v29.md) ---
+
+class OmniExistentialKeyRequest(BaseModel):
+    gigahertz_burst: List[float] = Field(
+        default=[12.2, -11.4, 13.1, -10.7, 12.5, -11.1, 11.9, -12.0],
+        description="Gigahertz-band neocortical burst (2500-5000Hz) signal array"
+    )
+    hemisphere_samples: List[float] = Field(
+        default=[4.1, -3.5, 4.6, -3.3, 4.3, -3.7, 4.4, -3.6],
+        description="Global cross-hemispheric synchronization (0.1-40Hz) signal array"
+    )
+
+class EPRPanRetinalDecodeRequest(BaseModel):
+    tremor_signal: List[float] = Field(
+        default=[0.14, -0.28, 0.45, -0.55, 0.34, -0.41, 0.52, -0.31],
+        description="Full-duplex EPR-entangled pan-retinal tremor samples (20Hz-300Hz)"
+    )
+
+class EPRPanRetinalModulateRequest(BaseModel):
+    payload_text: str = Field(default="OMNI_EXISTENTIAL", description="Secret payload text to modulate onto EPR pan-retinal carrier")
+    carrier_freq_hz: float = Field(default=220.0, ge=20.0, le=300.0, description="Carrier frequency in Hz (20Hz-300Hz)")
+    duration_s: float = Field(default=0.1, ge=0.05, le=2.0, description="Signal duration in seconds")
+
+class OmniExistentialPSDRequest(BaseModel):
+    gigahertz_burst: List[float] = Field(
+        default=[12.2, -11.4, 13.1, -10.7, 12.5, -11.1, 11.9, -12.0],
+        description="Gigahertz-band neocortical burst (2500-5000Hz) signal array"
+    )
+    hemisphere_samples: List[float] = Field(
+        default=[4.1, -3.5, 4.6, -3.3, 4.3, -3.7, 4.4, -3.6],
+        description="Global cross-hemispheric synchronization (0.1-40Hz) signal array"
+    )
+    phase_diff_rad: float = Field(default=0.05, description="Global phase discrepancy in radians")
+    sigma_hyper: float = Field(default=0.40, gt=0.0, description="Hyper-dimensional coherence bandwidth sigma_hyper")
+
+class HypercubeManifoldRequest(BaseModel):
+    hypercube_phase_rad: float = Field(
+        default=12.566371, ge=0.0, le=25.132741,
+        description="Soliton-hypercube phase in radians (0 to 8*PI)"
+    )
+    hypercube_dimension: int = Field(
+        default=8, ge=4, le=16,
+        description="Topological hypercube projection dimension"
+    )
+
+class OmniExistentialKeyDeriveRequest(BaseModel):
+    gigahertz_burst: List[float] = Field(
+        default=[12.2, -11.4, 13.1, -10.7, 12.5, -11.1],
+        description="Gigahertz-band neocortical burst (2500-5000Hz) samples"
+    )
+    hemisphere_samples: List[float] = Field(
+        default=[4.1, -3.5, 4.6, -3.3, 4.3, -3.7],
+        description="Global cross-hemispheric sync (0.1-40Hz) samples"
+    )
+    hypercube_phase_rad: float = Field(default=12.566371, ge=0.0, le=25.132741, description="Soliton-hypercube phase in radians")
+    dna_codon_stream: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="Topological diamondoid organoid DNA codon strand")
+    pan_retinal_rad: float = Field(default=0.005, description="EPR pan-retinal manifold angle in radians")
+    salt: Optional[str] = Field(default=None, description="Optional custom trans-cosmic hypercube salt")
+
+class ZKOmniExistentialProofRequest(BaseModel):
+    omni_existential_power: float = Field(default=1280.5, ge=0.0, description="Gigahertz-burst & cross-hemispheric power")
+    hypercube_phase_rad: float = Field(default=12.566371, ge=0.0, le=25.132741, description="Soliton-hypercube phase in radians")
+    pan_retinal_rad: float = Field(default=0.005, description="EPR pan-retinal manifold vector in radians")
+    dna_codons: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="DNA codon witness strand")
+    user_identity: str = Field(default="OPERATOR_OMNI_EXISTENTIAL_01", description="Operator identity seed")
+
+class ZKOmniExistentialVerifyRequest(BaseModel):
+    proof: Dict[str, Any] = Field(description="zk-OmniExistential quinary-field STARK proof object to verify")
+
+
+# --- 45. V31.0.0-ABSOLUTE TRANSCENDENT CONSCIOUSNESS SINGULARITY (suggestion-v30.md) ---
+
+class TranscendentSingularityKeyRequest(BaseModel):
+    subterahertz_burst_samples: List[float] = Field(
+        default=[18.2, -17.4, 19.1, -16.7, 18.5, -17.1, 17.9, -18.0],
+        description="Sub-terahertz neocortical burst (5000-10000Hz) signal array"
+    )
+    pan_cerebral_samples: List[float] = Field(
+        default=[5.1, -4.5, 5.6, -4.3, 5.3, -4.7, 5.4, -4.6],
+        description="Pan-cerebral hemispheric synchronization (0.01-50Hz) signal array"
+    )
+
+class CVQKDRetinalDecodeRequest(BaseModel):
+    tremor_signal: List[float] = Field(
+        default=[0.18, -0.32, 0.51, -0.60, 0.39, -0.46, 0.58, -0.35],
+        description="Continuous CV-QKD pan-retinal cerebral micro-tremor samples (20Hz-400Hz)"
+    )
+
+class CVQKDRetinalModulateRequest(BaseModel):
+    payload_text: str = Field(default="TRANSCENDENT", description="Secret payload text to modulate onto CV-QKD pan-retinal carrier")
+    carrier_freq_hz: float = Field(default=280.0, ge=20.0, le=400.0, description="Carrier frequency in Hz (20Hz-400Hz)")
+    duration_s: float = Field(default=0.05, ge=0.01, le=2.0, description="Signal duration in seconds")
+
+class TranscendentSingularityPSDRequest(BaseModel):
+    subterahertz_burst_samples: List[float] = Field(
+        default=[18.2, -17.4, 19.1, -16.7, 18.5, -17.1, 17.9, -18.0],
+        description="Sub-terahertz neocortical burst (5000-10000Hz) signal array"
+    )
+    pan_cerebral_samples: List[float] = Field(
+        default=[5.1, -4.5, 5.6, -4.3, 5.3, -4.7, 5.4, -4.6],
+        description="Pan-cerebral hemispheric synchronization (0.01-50Hz) signal array"
+    )
+    phase_diff_rad: float = Field(default=0.03, description="Omniversal phase discrepancy in radians")
+    sigma_lattice: float = Field(default=0.35, gt=0.0, description="Hyperlattice coherence bandwidth sigma_lattice")
+
+class HyperlatticeManifoldRequest(BaseModel):
+    hyperlattice_phase_rad: float = Field(
+        default=12.566371, ge=0.0, le=25.132741,
+        description="Soliton-hyperlattice phase in radians (0 to 8*PI)"
+    )
+    hyperlattice_order: int = Field(
+        default=12, ge=4, le=24,
+        description="Planckian hyperlattice dimensional order"
+    )
+
+class TranscendentSingularityKeyDeriveRequest(BaseModel):
+    subterahertz_burst_samples: List[float] = Field(
+        default=[18.2, -17.4, 19.1, -16.7, 18.5, -17.1],
+        description="Sub-terahertz burst (5000-10000Hz) samples"
+    )
+    pan_cerebral_samples: List[float] = Field(
+        default=[5.1, -4.5, 5.6, -4.3, 5.3, -4.7],
+        description="Pan-cerebral sync (0.01-50Hz) samples"
+    )
+    hyperlattice_phase_rad: float = Field(default=12.566371, ge=0.0, le=25.132741, description="Soliton-hyperlattice phase in radians")
+    dna_codon_stream: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="Diamondoid organoid DNA codon strand")
+    pan_retinal_tensor_rad: float = Field(default=0.003, description="CV-QKD pan-retinal tensor angle in radians")
+    salt: Optional[str] = Field(default=None, description="Optional custom trans-omniversal hyperlattice salt")
+
+class ZKOmniTranscendentProofRequest(BaseModel):
+    ts_singularity_power: float = Field(default=4250.8, ge=0.0, description="Sub-terahertz & pan-cerebral cross-frequency power")
+    hyperlattice_phase_rad: float = Field(default=12.566371, ge=0.0, le=25.132741, description="Soliton-hyperlattice phase in radians")
+    pan_retinal_tensor_rad: float = Field(default=0.003, description="CV-QKD pan-retinal tensor vector in radians")
+    dna_codons: str = Field(default="ACGTACGTACGTACGTACGTACGTACGTACGT", description="DNA codon witness strand")
+    user_identity: str = Field(default="OPERATOR_OMNI_TRANSCENDENT_01", description="Operator identity seed")
+
+class ZKOmniTranscendentVerifyRequest(BaseModel):
+    proof: Dict[str, Any] = Field(description="zk-OmniTranscendent senary-field STARK proof object to verify")
+
+
 
 
 

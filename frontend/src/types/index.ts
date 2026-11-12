@@ -1159,4 +1159,656 @@ export interface TransRecursiveZeroizeResult {
   fail_closed_confirmed: boolean;
 }
 
+// V27.0 Omnipresent Bio-Quantum Convergence Types
+export interface TransCognitiveTelemetry {
+  soliton_interposer: {
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    topological_chern_number: number;
+    total_couplings: number;
+  };
+  trans_cognitive_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    ultra_high_gamma_band: string;
+    hippocampal_ripple_band: string;
+    retinal_tremor_band: string;
+    zeroized: boolean;
+  };
+  zk_dual_field_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+    babybear_prime: string;
+    verify_sla_ms: number;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface SolitonWavepacketResult {
+  soliton_intensity_uv: number;
+  topological_potential: number;
+  soliton_peak_amplitude: number;
+  nonlinear_kerr_phase_rad: number;
+  organoid_lattice_refractive_idx: number;
+  topological_bandgap_thz: number;
+  topological_chern_number: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface TransCognitiveKeyResult {
+  status: string;
+  key_hash: string;
+  ultra_high_gamma_count: number;
+  ripple_sample_count: number;
+}
+
+export interface TransCognitivePSDResult {
+  sampling_rate_hz: number;
+  ultra_high_gamma_band_range: string;
+  hippocampal_ripple_band_range: string;
+  phase_synchronization: number;
+  omnipresent_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface RetinalCorticalDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface RetinalCorticalModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface OmnipresentCognitiveKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  omnipresent_power: number;
+  soliton_intensity_uv: number;
+  dna_codon_stream: string;
+  foveal_manifold_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKTransCognitiveProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    babybear_prime_hex: string;
+    goldilocks_fri_layers: string[];
+    babybear_fri_layers: string[];
+    security_margin_bits: number;
+    verification_time_ms: number;
+    verification_sla_ms: number;
+    omnipresent_power_verified: boolean;
+    soliton_intensity_verified: boolean;
+    foveal_manifold_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKTransCognitiveVerifyResult {
+  status: string;
+  is_valid: boolean;
+  verification_time_ms: number;
+  proof_system: string;
+}
+
+export interface TransCognitiveZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
+// V28.0 Transcendent Bio-Quantum Singularity Types
+export interface TranscendentTelemetry {
+  resonator_interposer: {
+    throughput_ebps_mm2: number;
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    diamondoid_q_factor: number;
+    total_couplings: number;
+  };
+  transcendent_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    trans_spectral_burst_band: string;
+    thalamocortical_loop_band: string;
+    retinal_tremor_band: string;
+    zeroized: boolean;
+  };
+  zk_ternary_field_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+    babybear_prime: string;
+    mersenne31_prime: string;
+    verify_sla_ms: number;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface ResonatorWavefunctionResult {
+  resonator_intensity_uv: number;
+  vacuum_potential: number;
+  vacuum_polarization_shift: number;
+  diamondoid_coupling_ghz: number;
+  diamondoid_q_factor: number;
+  coherent_fidelity: number;
+  throughput_ebps_mm2: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface TranscendentKeyResult {
+  status: string;
+  key_hash: string;
+  burst_sample_count: number;
+  thalamic_sample_count: number;
+}
+
+export interface TranscendentPSDResult {
+  sampling_rate_hz: number;
+  trans_spectral_burst_band: string;
+  thalamocortical_loop_band: string;
+  gaussian_phase_coherence: number;
+  transcendent_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface EntangledRetinalDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface EntangledRetinalModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface TranscendentKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  transcendent_power: number;
+  resonator_intensity_uv: number;
+  dna_codon_stream: string;
+  retinal_tensor_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKTranscendentProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    babybear_prime_hex: string;
+    mersenne31_prime_hex: string;
+    goldilocks_fri_layers: string[];
+    babybear_fri_layers: string[];
+    mersenne31_fri_layers: string[];
+    security_margin_bits: number;
+    verification_time_ms: number;
+    verification_sla_ms: number;
+    transcendent_power_verified: boolean;
+    resonator_intensity_verified: boolean;
+    retinal_tensor_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKTranscendentVerifyResult {
+  status: string;
+  is_valid: boolean;
+  verification_time_ms: number;
+  proof_system: string;
+}
+
+export interface TranscendentZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
+// V29.0 Omnipotent Bio-Quantum Reality Singularity Types
+export interface OmnipotentTelemetry {
+  gravitational_lattice: {
+    throughput_ebps_mm2: number;
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    scaffold_q_factor: number;
+    total_couplings: number;
+  };
+  omnipotent_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    ultra_burst_band: string;
+    corticostriatal_loop_band: string;
+    retinal_tremor_band: string;
+    zeroized: boolean;
+  };
+  zk_quaternary_field_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+    babybear_prime: string;
+    mersenne31_prime: string;
+    koalabear_prime: string;
+    verify_sla_ms: number;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface GravitationalLatticeResult {
+  gravitational_phase_rad: number;
+  metric_curvature: number;
+  metric_tensor_perturbation: number;
+  graphene_diamondoid_coupling_thz: number;
+  scaffold_q_factor: number;
+  lattice_coherence: number;
+  throughput_ebps_mm2: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface OmnipotentKeyResult {
+  status: string;
+  key_hash: string;
+  ultra_burst_sample_count: number;
+  striatal_sample_count: number;
+}
+
+export interface OmnipotentPSDResult {
+  sampling_rate_hz: number;
+  ultra_burst_band: string;
+  corticostriatal_loop_band: string;
+  gravitational_phase_coherence: number;
+  omnipotent_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface SqueezedRetinalDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface SqueezedRetinalModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface OmnipotentKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  omnipotent_power: number;
+  gravitational_phase_rad: number;
+  dna_codon_stream: string;
+  retinal_manifold_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKOmnipotentProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    babybear_prime_hex: string;
+    mersenne31_prime_hex: string;
+    koalabear_prime_hex: string;
+    goldilocks_fri_layers: string[];
+    babybear_fri_layers: string[];
+    mersenne31_fri_layers: string[];
+    koalabear_fri_layers: string[];
+    security_margin_bits: number;
+    verification_time_ms: number;
+    verification_sla_ms: number;
+    omnipotent_power_verified: boolean;
+    gravitational_phase_verified: boolean;
+    retinal_manifold_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKOmnipotentVerifyResult {
+  status: string;
+  is_valid: boolean;
+  verification_time_ms: number;
+  proof_system: string;
+}
+
+export interface OmnipotentZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
+// V30.0 Absolute Omni-Existential Consciousness Types
+export interface OmniExistentialTelemetry {
+  soliton_hypercube: {
+    throughput_ebps_mm2: number;
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    hypercube_dimensions: number;
+    total_couplings: number;
+  };
+  omni_existential_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    gigahertz_burst_band: string;
+    hemisphere_sync_band: string;
+    pan_retinal_band: string;
+    zeroized: boolean;
+  };
+  zk_quinary_field_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+    babybear_prime: string;
+    mersenne31_prime: string;
+    koalabear_prime: string;
+    starknet_prime: string;
+    verify_sla_ms: number;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface HypercubeManifoldResult {
+  hypercube_phase_rad: number;
+  hypercube_dimension: number;
+  hypercube_metric_invariant: number;
+  diamondoid_hyper_coupling_thz: number;
+  continuum_coherence: number;
+  throughput_ebps_mm2: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface OmniExistentialKeyResult {
+  status: string;
+  key_hash: string;
+  gigahertz_burst_count: number;
+  hemisphere_sample_count: number;
+}
+
+export interface OmniExistentialPSDResult {
+  sampling_rate_hz: number;
+  gigahertz_burst_band: string;
+  hemisphere_sync_band: string;
+  global_phase_coherence: number;
+  omni_existential_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface EPRPanRetinalDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface EPRPanRetinalModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface OmniExistentialKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  omni_existential_power: number;
+  hypercube_phase_rad: number;
+  dna_codon_stream: string;
+  pan_retinal_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKOmniExistentialProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    babybear_prime_hex: string;
+    mersenne31_prime_hex: string;
+    koalabear_prime_hex: string;
+    starknet_prime_hex: string;
+    goldilocks_fri_layers: string[];
+    babybear_fri_layers: string[];
+    mersenne31_fri_layers: string[];
+    koalabear_fri_layers: string[];
+    starknet_fri_layers: string[];
+    security_margin_bits: number;
+    verification_time_ms: number;
+    verification_sla_ms: number;
+    omni_existential_power_verified: boolean;
+    hypercube_phase_verified: boolean;
+    pan_retinal_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKOmniExistentialVerifyResult {
+  status: string;
+  is_valid: boolean;
+  verification_time_ms: number;
+  proof_system: string;
+}
+
+export interface OmniExistentialZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
+// V31.0 Absolute Transcendent Consciousness Singularity Types
+export interface TranscendentSingularityTelemetry {
+  soliton_hyperlattice: {
+    throughput_zbps_mm2: number;
+    throughput_pbps_mm2: number;
+    energy_efficiency_fj_bit: number;
+    central_wavelength_nm: number;
+    hyperlattice_order: number;
+    total_couplings: number;
+  };
+  transcendent_singularity_engine: {
+    sampling_rate_hz: number;
+    total_operations: number;
+    subterahertz_burst_band: string;
+    pan_cerebral_sync_band: string;
+    pan_retinal_band: string;
+    zeroized: boolean;
+  };
+  zk_senary_field_stark: {
+    total_proofs: number;
+    security_bits: number;
+    goldilocks_prime: string;
+    babybear_prime: string;
+    mersenne31_prime: string;
+    koalabear_prime: string;
+    starknet_prime: string;
+    circle128_order: string;
+    verify_sla_ms: number;
+  };
+  security: {
+    zeroization_sla_us: number;
+    zeroized: boolean;
+  };
+}
+
+export interface HyperlatticeManifoldResult {
+  hyperlattice_phase_rad: number;
+  hyperlattice_order: number;
+  omniversal_metric_invariant: number;
+  diamondoid_lattice_coupling_thz: number;
+  phase_coherence: number;
+  throughput_zbps_mm2: number;
+  throughput_pbps_mm2: number;
+  energy_efficiency_fj_bit: number;
+  status: string;
+}
+
+export interface TranscendentSingularityKeyResult {
+  status: string;
+  key_hash: string;
+  subterahertz_burst_count: number;
+  pan_cerebral_sample_count: number;
+}
+
+export interface TranscendentSingularityPSDResult {
+  sampling_rate_hz: number;
+  subterahertz_burst_band: string;
+  pan_cerebral_sync_band: string;
+  omniversal_phase_coherence: number;
+  ts_singularity_power: number;
+  shannon_entropy_bits: number;
+  status: string;
+}
+
+export interface CVQKDRetinalDecodeResult {
+  status: string;
+  recovered_bytes_hex: string;
+  recovered_text: string;
+  byte_count: number;
+}
+
+export interface CVQKDRetinalModulateResult {
+  status: string;
+  signal_samples: number[];
+  total_samples: number;
+  carrier_freq_hz: number;
+  duration_s: number;
+}
+
+export interface TranscendentSingularityKeyDeriveResult {
+  key_hex: string;
+  key_bytes_len: number;
+  key_bits_len: number;
+  zk_commitment: string;
+  entropy_bits: number;
+  ts_singularity_power: number;
+  hyperlattice_phase_rad: number;
+  dna_codon_stream: string;
+  pan_retinal_tensor_rad: number;
+  valid: boolean;
+  status?: string;
+}
+
+export interface ZKOmniTranscendentProofResult {
+  status: string;
+  proof: {
+    proof_id: string;
+    state_commitment: string;
+    goldilocks_prime_hex: string;
+    babybear_prime_hex: string;
+    mersenne31_prime_hex: string;
+    koalabear_prime_hex: string;
+    starknet_prime_hex: string;
+    circle128_order_hex: string;
+    goldilocks_fri_layers: string[];
+    babybear_fri_layers: string[];
+    mersenne31_fri_layers: string[];
+    koalabear_fri_layers: string[];
+    starknet_fri_layers: string[];
+    circle128_fri_layers: string[];
+    security_margin_bits: number;
+    verification_time_ms: number;
+    verification_sla_ms: number;
+    ts_singularity_power_verified: boolean;
+    hyperlattice_phase_verified: boolean;
+    pan_retinal_tensor_verified: boolean;
+    verified: boolean;
+    timestamp: number;
+  };
+}
+
+export interface ZKOmniTranscendentVerifyResult {
+  status: string;
+  is_valid: boolean;
+  verification_time_ms: number;
+  proof_system: string;
+}
+
+export interface TranscendentSingularityZeroizeResult {
+  status: string;
+  shred_passes: string[];
+  zeroization_latency_us: number;
+  sla_target_us: number;
+  fail_closed_confirmed: boolean;
+}
+
 

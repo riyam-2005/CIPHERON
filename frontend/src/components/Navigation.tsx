@@ -29,6 +29,11 @@ export type ActiveTab =
   | 'omni-synaptic'
   | 'omni-cognitive'
   | 'trans-recursive'
+  | 'trans-cognitive'
+  | 'transcendent-singularity'
+  | 'omnipotent-singularity'
+  | 'omni-existential'
+  | 'transcendent-consciousness'
   | 'hardware'
   | 'code'
   | 'binary'
@@ -69,6 +74,11 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }
     { id: 'omni-synaptic', label: 'Omni-Synaptic Matrix', icon: Layers, badge: 'V24.0' },
     { id: 'omni-cognitive', label: 'Omni-Cognitive Singularity', icon: Atom, badge: 'V25.0' },
     { id: 'trans-recursive', label: 'Absolute Omni-Cognitive', icon: Atom, badge: 'V26.0' },
+    { id: 'trans-cognitive', label: 'Omnipresent Convergence', icon: Atom, badge: 'V27.0' },
+    { id: 'transcendent-singularity', label: 'Transcendent Singularity', icon: Atom, badge: 'V28.0' },
+    { id: 'omnipotent-singularity', label: 'Omnipotent Singularity', icon: Atom, badge: 'V29.0' },
+    { id: 'omni-existential', label: 'Omni-Existential Consciousness', icon: Atom, badge: 'V30.0' },
+    { id: 'transcendent-consciousness', label: 'Transcendent Consciousness', icon: Atom, badge: 'V31.0' },
     { id: 'hardware', label: 'ESP32 Hardware Lab', icon: Cpu, badge: 'OLED' },
     { id: 'code', label: 'Code Intelligence', icon: Code2, badge: 'AST' },
     { id: 'binary', label: 'Binary & Hashes', icon: Binary, badge: 'HEX' },

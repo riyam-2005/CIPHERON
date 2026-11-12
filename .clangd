@@ -1,0 +1,35 @@
+CompileFlags:
+  Add:
+    - --target=i686-w64-mingw32
+    - -isystem
+    - C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++
+    - -isystem
+    - C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32
+    - -isystem
+    - C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/backward
+    - -isystem
+    - C:/MinGW/lib/gcc/mingw32/6.3.0/include
+    - -isystem
+    - C:/MinGW/include
+    - -isystem
+    - C:/MinGW/lib/gcc/mingw32/6.3.0/include-fixed
+    - -IC:/Users/riyam/Downloads/CIPHERON-X1/firmware/main
+    - -IC:/Users/riyam/Downloads/CIPHERON-X1/firmware/main/config
+    - -IC:/Users/riyam/Downloads/CIPHERON-X1/firmware/main/tasks
+---
+If:
+  PathMatch: .*\.cpp$
+CompileFlags:
+  Add:
+    - -std=c++17
+    - -x
+    - c++
+---
+If:
+  PathMatch: .*\.c$
+CompileFlags:
+  Add:
+    - -std=c11
+    - -x
+    - c
+

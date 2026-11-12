@@ -79,7 +79,57 @@ import {
   AbsoluteCognitiveKeyDeriveResult,
   ZKAbsoluteCognitiveProofResult,
   ZKAbsoluteCognitiveVerifyResult,
-  TransRecursiveZeroizeResult
+  TransRecursiveZeroizeResult,
+  TransCognitiveTelemetry,
+  SolitonWavepacketResult,
+  TransCognitiveKeyResult,
+  TransCognitivePSDResult,
+  RetinalCorticalDecodeResult,
+  RetinalCorticalModulateResult,
+  OmnipresentCognitiveKeyDeriveResult,
+  ZKTransCognitiveProofResult,
+  ZKTransCognitiveVerifyResult,
+  TransCognitiveZeroizeResult,
+  TranscendentTelemetry,
+  ResonatorWavefunctionResult,
+  TranscendentKeyResult,
+  TranscendentPSDResult,
+  EntangledRetinalDecodeResult,
+  EntangledRetinalModulateResult,
+  TranscendentKeyDeriveResult,
+  ZKTranscendentProofResult,
+  ZKTranscendentVerifyResult,
+  TranscendentZeroizeResult,
+  OmnipotentTelemetry,
+  GravitationalLatticeResult,
+  OmnipotentKeyResult,
+  OmnipotentPSDResult,
+  SqueezedRetinalDecodeResult,
+  SqueezedRetinalModulateResult,
+  OmnipotentKeyDeriveResult,
+  ZKOmnipotentProofResult,
+  ZKOmnipotentVerifyResult,
+  OmnipotentZeroizeResult,
+  OmniExistentialTelemetry,
+  HypercubeManifoldResult,
+  OmniExistentialKeyResult,
+  OmniExistentialPSDResult,
+  EPRPanRetinalDecodeResult,
+  EPRPanRetinalModulateResult,
+  OmniExistentialKeyDeriveResult,
+  ZKOmniExistentialProofResult,
+  ZKOmniExistentialVerifyResult,
+  OmniExistentialZeroizeResult,
+  TranscendentSingularityTelemetry,
+  HyperlatticeManifoldResult,
+  TranscendentSingularityKeyResult,
+  TranscendentSingularityPSDResult,
+  CVQKDRetinalDecodeResult,
+  CVQKDRetinalModulateResult,
+  TranscendentSingularityKeyDeriveResult,
+  ZKOmniTranscendentProofResult,
+  ZKOmniTranscendentVerifyResult,
+  TranscendentSingularityZeroizeResult
 } from '../types';
 
 
@@ -829,6 +879,495 @@ export const api = {
 
   triggerTransRecursiveZeroize: () =>
     fetchJson<TransRecursiveZeroizeResult>('/trans-recursive/zeroize', {
+      method: 'POST'
+    }),
+
+  // V27.0 Omnipresent Bio-Quantum Convergence API
+  getTransCognitiveTelemetry: () =>
+    fetchJson<TransCognitiveTelemetry>('/trans-cognitive/telemetry'),
+
+  computeSolitonWavepacket: (solitonIntensityUv: number, topologicalPotential = 1.25) =>
+    fetchJson<SolitonWavepacketResult>('/trans-cognitive/soliton-wavepacket', {
+      method: 'POST',
+      body: JSON.stringify({
+        soliton_intensity_uv: solitonIntensityUv,
+        topological_potential: topologicalPotential
+      })
+    }),
+
+  extractUltraGammaKey: (ultraHighGamma: number[], rippleSamples: number[]) =>
+    fetchJson<TransCognitiveKeyResult>('/trans-cognitive/ultra-gamma-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_high_gamma: ultraHighGamma,
+        ripple_samples: rippleSamples
+      })
+    }),
+
+  computeOmnipresentPsd: (ultraHighGamma: number[], rippleSamples: number[], phaseSync = 0.97) =>
+    fetchJson<TransCognitivePSDResult>('/trans-cognitive/omnipresent-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_high_gamma: ultraHighGamma,
+        ripple_samples: rippleSamples,
+        phase_sync: phaseSync
+      })
+    }),
+
+  decodeRetinalCortical: (tremorSignal: number[]) =>
+    fetchJson<RetinalCorticalDecodeResult>('/trans-cognitive/decode-retinal', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateRetinalCortical: (payloadText: string, carrierFreqHz = 110.0, durationS = 0.5) =>
+    fetchJson<RetinalCorticalModulateResult>('/trans-cognitive/modulate-retinal', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveOmnipresentCognitiveKey: (
+    ultraHighGamma: number[],
+    rippleSamples: number[],
+    solitonIntensityUv: number,
+    dnaCodonStream: string,
+    fovealManifoldRad: number,
+    salt?: string
+  ) =>
+    fetchJson<OmnipresentCognitiveKeyDeriveResult>('/trans-cognitive/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_high_gamma: ultraHighGamma,
+        ripple_samples: rippleSamples,
+        soliton_intensity_uv: solitonIntensityUv,
+        dna_codon_stream: dnaCodonStream,
+        foveal_manifold_rad: fovealManifoldRad,
+        salt: salt
+      })
+    }),
+
+  generateZKTransCognitiveProof: (
+    omnipresentPower: number,
+    solitonIntensityUv: number,
+    fovealManifoldRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_OMNIPRESENT_01'
+  ) =>
+    fetchJson<ZKTransCognitiveProofResult>('/trans-cognitive/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        omnipresent_power: omnipresentPower,
+        soliton_intensity_uv: solitonIntensityUv,
+        foveal_manifold_rad: fovealManifoldRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKTransCognitiveProof: (proof: any) =>
+    fetchJson<ZKTransCognitiveVerifyResult>('/trans-cognitive/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerTransCognitiveZeroize: () =>
+    fetchJson<TransCognitiveZeroizeResult>('/trans-cognitive/zeroize', {
+      method: 'POST'
+    }),
+
+  // V28.0 Transcendent Bio-Quantum Singularity API
+  getTranscendentTelemetry: () =>
+    fetchJson<TranscendentTelemetry>('/transcendent/telemetry'),
+
+  computeResonatorWavefunction: (resonatorIntensityUv: number, vacuumPotential = 1.85) =>
+    fetchJson<ResonatorWavefunctionResult>('/transcendent/resonator-wavefunction', {
+      method: 'POST',
+      body: JSON.stringify({
+        resonator_intensity_uv: resonatorIntensityUv,
+        vacuum_potential: vacuumPotential
+      })
+    }),
+
+  extractTranscendentBurstKey: (burstSamples: number[], thalamicSamples: number[]) =>
+    fetchJson<TranscendentKeyResult>('/transcendent/burst-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        burst_samples: burstSamples,
+        thalamic_samples: thalamicSamples
+      })
+    }),
+
+  computeTranscendentPsd: (burstSamples: number[], thalamicSamples: number[], phaseDiffRad = 0.10, sigma = 0.50) =>
+    fetchJson<TranscendentPSDResult>('/transcendent/transcendent-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        burst_samples: burstSamples,
+        thalamic_samples: thalamicSamples,
+        phase_diff_rad: phaseDiffRad,
+        sigma: sigma
+      })
+    }),
+
+  decodeEntangledRetinal: (tremorSignal: number[]) =>
+    fetchJson<EntangledRetinalDecodeResult>('/transcendent/decode-retinal', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateEntangledRetinal: (payloadText: string, carrierFreqHz = 140.0, durationS = 0.5) =>
+    fetchJson<EntangledRetinalModulateResult>('/transcendent/modulate-retinal', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveTranscendentKey: (
+    burstSamples: number[],
+    thalamicSamples: number[],
+    resonatorIntensityUv: number,
+    dnaCodonStream: string,
+    retinalTensorRad: number,
+    salt?: string
+  ) =>
+    fetchJson<TranscendentKeyDeriveResult>('/transcendent/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        burst_samples: burstSamples,
+        thalamic_samples: thalamicSamples,
+        resonator_intensity_uv: resonatorIntensityUv,
+        dna_codon_stream: dnaCodonStream,
+        retinal_tensor_rad: retinalTensorRad,
+        salt: salt
+      })
+    }),
+
+  generateZKTranscendentProof: (
+    transcendentPower: number,
+    resonatorIntensityUv: number,
+    retinalTensorRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_TRANSCENDENT_01'
+  ) =>
+    fetchJson<ZKTranscendentProofResult>('/transcendent/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        transcendent_power: transcendentPower,
+        resonator_intensity_uv: resonatorIntensityUv,
+        retinal_tensor_rad: retinalTensorRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKTranscendentProof: (proof: any) =>
+    fetchJson<ZKTranscendentVerifyResult>('/transcendent/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerTranscendentZeroize: () =>
+    fetchJson<TranscendentZeroizeResult>('/transcendent/zeroize', {
+      method: 'POST'
+    }),
+
+  // V29.0 Omnipotent Bio-Quantum Reality Singularity API
+  getOmnipotentTelemetry: () =>
+    fetchJson<OmnipotentTelemetry>('/omnipotent/telemetry'),
+
+  computeGravitationalLattice: (gravitationalPhaseRad: number, metricCurvature = 2.40) =>
+    fetchJson<GravitationalLatticeResult>('/omnipotent/gravitational-lattice', {
+      method: 'POST',
+      body: JSON.stringify({
+        gravitational_phase_rad: gravitationalPhaseRad,
+        metric_curvature: metricCurvature
+      })
+    }),
+
+  extractOmnipotentUltraBurstKey: (ultraBurstSamples: number[], striatalSamples: number[]) =>
+    fetchJson<OmnipotentKeyResult>('/omnipotent/ultra-burst-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_burst_samples: ultraBurstSamples,
+        striatal_samples: striatalSamples
+      })
+    }),
+
+  computeOmnipotentPsd: (ultraBurstSamples: number[], striatalSamples: number[], phaseDiffRad = 0.08, sigmaGrav = 0.45) =>
+    fetchJson<OmnipotentPSDResult>('/omnipotent/omnipotent-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_burst_samples: ultraBurstSamples,
+        striatal_samples: striatalSamples,
+        phase_diff_rad: phaseDiffRad,
+        sigma_grav: sigmaGrav
+      })
+    }),
+
+  decodeSqueezedRetinal: (tremorSignal: number[]) =>
+    fetchJson<SqueezedRetinalDecodeResult>('/omnipotent/decode-retinal', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateSqueezedRetinal: (payloadText: string, carrierFreqHz = 180.0, durationS = 0.2) =>
+    fetchJson<SqueezedRetinalModulateResult>('/omnipotent/modulate-retinal', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveOmnipotentKey: (
+    ultraBurstSamples: number[],
+    striatalSamples: number[],
+    gravitationalPhaseRad: number,
+    dnaCodonStream: string,
+    retinalManifoldRad: number,
+    salt?: string
+  ) =>
+    fetchJson<OmnipotentKeyDeriveResult>('/omnipotent/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        ultra_burst_samples: ultraBurstSamples,
+        striatal_samples: striatalSamples,
+        gravitational_phase_rad: gravitationalPhaseRad,
+        dna_codon_stream: dnaCodonStream,
+        retinal_manifold_rad: retinalManifoldRad,
+        salt: salt
+      })
+    }),
+
+  generateZKOmnipotentProof: (
+    omnipotentPower: number,
+    gravitationalPhaseRad: number,
+    retinalManifoldRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_OMNIPOTENT_01'
+  ) =>
+    fetchJson<ZKOmnipotentProofResult>('/omnipotent/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        omnipotent_power: omnipotentPower,
+        gravitational_phase_rad: gravitationalPhaseRad,
+        retinal_manifold_rad: retinalManifoldRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKOmnipotentProof: (proof: any) =>
+    fetchJson<ZKOmnipotentVerifyResult>('/omnipotent/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerOmnipotentZeroize: () =>
+    fetchJson<OmnipotentZeroizeResult>('/omnipotent/zeroize', {
+      method: 'POST'
+    }),
+
+  // V30.0 Absolute Omni-Existential Consciousness API
+  getOmniExistentialTelemetry: () =>
+    fetchJson<OmniExistentialTelemetry>('/omni-existential/telemetry'),
+
+  computeHypercubeManifold: (hypercubePhaseRad: number, hypercubeDimension = 8) =>
+    fetchJson<HypercubeManifoldResult>('/omni-existential/hypercube-manifold', {
+      method: 'POST',
+      body: JSON.stringify({
+        hypercube_phase_rad: hypercubePhaseRad,
+        hypercube_dimension: hypercubeDimension
+      })
+    }),
+
+  extractOmniExistentialGigahertzKey: (gigahertzBurst: number[], hemisphereSamples: number[]) =>
+    fetchJson<OmniExistentialKeyResult>('/omni-existential/gigahertz-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        gigahertz_burst: gigahertzBurst,
+        hemisphere_samples: hemisphereSamples
+      })
+    }),
+
+  computeOmniExistentialPsd: (gigahertzBurst: number[], hemisphereSamples: number[], phaseDiffRad = 0.05, sigmaHyper = 0.40) =>
+    fetchJson<OmniExistentialPSDResult>('/omni-existential/omni-existential-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        gigahertz_burst: gigahertzBurst,
+        hemisphere_samples: hemisphereSamples,
+        phase_diff_rad: phaseDiffRad,
+        sigma_hyper: sigmaHyper
+      })
+    }),
+
+  decodeEprPanRetinal: (tremorSignal: number[]) =>
+    fetchJson<EPRPanRetinalDecodeResult>('/omni-existential/decode-retinal', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateEprPanRetinal: (payloadText: string, carrierFreqHz = 220.0, durationS = 0.1) =>
+    fetchJson<EPRPanRetinalModulateResult>('/omni-existential/modulate-retinal', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveOmniExistentialKey: (
+    gigahertzBurst: number[],
+    hemisphereSamples: number[],
+    hypercubePhaseRad: number,
+    dnaCodonStream: string,
+    panRetinalRad: number,
+    salt?: string
+  ) =>
+    fetchJson<OmniExistentialKeyDeriveResult>('/omni-existential/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        gigahertz_burst: gigahertzBurst,
+        hemisphere_samples: hemisphereSamples,
+        hypercube_phase_rad: hypercubePhaseRad,
+        dna_codon_stream: dnaCodonStream,
+        pan_retinal_rad: panRetinalRad,
+        salt: salt
+      })
+    }),
+
+  generateZKOmniExistentialProof: (
+    omniExistentialPower: number,
+    hypercubePhaseRad: number,
+    panRetinalRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_OMNI_EXISTENTIAL_01'
+  ) =>
+    fetchJson<ZKOmniExistentialProofResult>('/omni-existential/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        omni_existential_power: omniExistentialPower,
+        hypercube_phase_rad: hypercubePhaseRad,
+        pan_retinal_rad: panRetinalRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKOmniExistentialProof: (proof: any) =>
+    fetchJson<ZKOmniExistentialVerifyResult>('/omni-existential/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerOmniExistentialZeroize: () =>
+    fetchJson<OmniExistentialZeroizeResult>('/omni-existential/zeroize', {
+      method: 'POST'
+    }),
+
+  // V31.0 Absolute Transcendent Consciousness Singularity API
+  getTranscendentSingularityTelemetry: () =>
+    fetchJson<TranscendentSingularityTelemetry>('/transcendent-singularity/telemetry'),
+
+  computeHyperlatticeManifold: (hyperlatticePhaseRad: number, hyperlatticeOrder = 12) =>
+    fetchJson<HyperlatticeManifoldResult>('/transcendent-singularity/hyperlattice-manifold', {
+      method: 'POST',
+      body: JSON.stringify({
+        hyperlattice_phase_rad: hyperlatticePhaseRad,
+        hyperlattice_order: hyperlatticeOrder
+      })
+    }),
+
+  extractTranscendentSingularityKey: (subterahertzBurstSamples: number[], panCerebralSamples: number[]) =>
+    fetchJson<TranscendentSingularityKeyResult>('/transcendent-singularity/subterahertz-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        subterahertz_burst_samples: subterahertzBurstSamples,
+        pan_cerebral_samples: panCerebralSamples
+      })
+    }),
+
+  computeTranscendentSingularityPsd: (subterahertzBurstSamples: number[], panCerebralSamples: number[], phaseDiffRad = 0.03, sigmaLattice = 0.35) =>
+    fetchJson<TranscendentSingularityPSDResult>('/transcendent-singularity/ts-psd', {
+      method: 'POST',
+      body: JSON.stringify({
+        subterahertz_burst_samples: subterahertzBurstSamples,
+        pan_cerebral_samples: panCerebralSamples,
+        phase_diff_rad: phaseDiffRad,
+        sigma_lattice: sigmaLattice
+      })
+    }),
+
+  decodeCvqkdRetinal: (tremorSignal: number[]) =>
+    fetchJson<CVQKDRetinalDecodeResult>('/transcendent-singularity/decode-retinal', {
+      method: 'POST',
+      body: JSON.stringify({ tremor_signal: tremorSignal })
+    }),
+
+  modulateCvqkdRetinal: (payloadText: string, carrierFreqHz = 280.0, durationS = 0.05) =>
+    fetchJson<CVQKDRetinalModulateResult>('/transcendent-singularity/modulate-retinal', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload_text: payloadText,
+        carrier_freq_hz: carrierFreqHz,
+        duration_s: durationS
+      })
+    }),
+
+  deriveTranscendentSingularityKey: (
+    subterahertzBurstSamples: number[],
+    panCerebralSamples: number[],
+    hyperlatticePhaseRad: number,
+    dnaCodonStream: string,
+    panRetinalTensorRad: number,
+    salt?: string
+  ) =>
+    fetchJson<TranscendentSingularityKeyDeriveResult>('/transcendent-singularity/derive-key', {
+      method: 'POST',
+      body: JSON.stringify({
+        subterahertz_burst_samples: subterahertzBurstSamples,
+        pan_cerebral_samples: panCerebralSamples,
+        hyperlattice_phase_rad: hyperlatticePhaseRad,
+        dna_codon_stream: dnaCodonStream,
+        pan_retinal_tensor_rad: panRetinalTensorRad,
+        salt: salt
+      })
+    }),
+
+  generateZKOmniTranscendentProof: (
+    tsSingularityPower: number,
+    hyperlatticePhaseRad: number,
+    panRetinalTensorRad: number,
+    dnaCodons: string,
+    userIdentity = 'OPERATOR_OMNI_TRANSCENDENT_01'
+  ) =>
+    fetchJson<ZKOmniTranscendentProofResult>('/transcendent-singularity/zk-proof', {
+      method: 'POST',
+      body: JSON.stringify({
+        ts_singularity_power: tsSingularityPower,
+        hyperlattice_phase_rad: hyperlatticePhaseRad,
+        pan_retinal_tensor_rad: panRetinalTensorRad,
+        dna_codons: dnaCodons,
+        user_identity: userIdentity
+      })
+    }),
+
+  verifyZKOmniTranscendentProof: (proof: any) =>
+    fetchJson<ZKOmniTranscendentVerifyResult>('/transcendent-singularity/zk-verify', {
+      method: 'POST',
+      body: JSON.stringify({ proof })
+    }),
+
+  triggerTranscendentSingularityZeroize: () =>
+    fetchJson<TranscendentSingularityZeroizeResult>('/transcendent-singularity/zeroize', {
       method: 'POST'
     })
 };
